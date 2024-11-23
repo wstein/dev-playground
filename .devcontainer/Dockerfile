@@ -23,10 +23,14 @@ RUN apt-get update &&\
     maven \
     python3 \
     ruby \
+    sbcl \
+    swi-prolog \
     unzip \
     valac \
     xz-utils \
-    zip
+    zip &&\
+    apt-get autoremove -y &&\
+    apt-get clean -y
 
 # Install Fast Node Manager
 RUN curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir "/usr/local/bin"
@@ -39,7 +43,9 @@ RUN curl -fsSL https://packagecloud.io/84codes/crystal/gpgkey | gpg --dearmor | 
     apt-get remove -y --purge vim &&\
     ln -s /usr/bin/nvim /usr/local/bin/vim &&\
     ln -s /usr/bin/fdfind /usr/bin/fd &&\
-    curl -o /usr/local/lib/antlr-4-complete.jar https://www.antlr.org/download/antlr-4.13.2-complete.jar
+    curl -o /usr/local/lib/antlr-4-complete.jar https://www.antlr.org/download/antlr-4.13.2-complete.jar &&\
+    apt-get autoremove -y &&\
+    apt-get clean -y
 
 ENV PATH=$PATH:/home/vscode/.dotnet:/home/vscode/.dotnet/tools
 ENV CLASSPATH=".:/usr/local/lib/antlr-4-complete.jar"
